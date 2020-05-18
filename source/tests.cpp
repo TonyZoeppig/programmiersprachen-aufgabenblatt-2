@@ -1,8 +1,9 @@
 #define CATCH_CONFIG_RUNNER
 
 #include <catch.hpp>
-#include <vec2.hpp>
-#include <mat2.hpp>
+#include "vec2.hpp"
+#include "mat2.hpp"
+#include "color.hpp"
 
 TEST_CASE("Vec2", "{Vec2}") {
     Vec2 a;
@@ -267,6 +268,13 @@ TEST_CASE("MAT2 transpose", "{MAT2}") {
     REQUIRE(b_trans.e_10 == Approx(0.0f));
     REQUIRE(b_trans.e_01 == Approx(0.0f));
     REQUIRE(b_trans.e_11 == Approx(1.0f));
+}
+
+TEST_CASE("Color", "{Color}") {
+    Color color;
+    REQUIRE(color.r == Approx(0.5f));
+    REQUIRE(color.g == Approx(0.5f));
+    REQUIRE(color.b == Approx(0.5f));
 }
 
 int main(int argc, char* argv[])
