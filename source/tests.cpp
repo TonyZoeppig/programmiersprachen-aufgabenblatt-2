@@ -6,7 +6,7 @@
 
 TEST_CASE("Vec2", "{Vec2}") {
     Vec2 a;
-    Vec2 b{5.1f, -9.3f};
+    Vec2 b{ 5.1f, -9.3f };
     REQUIRE(a.x == 0.0f);
     REQUIRE(a.y == 0.0f);
     REQUIRE(b.x == Approx(5.1f));
@@ -203,7 +203,73 @@ TEST_CASE("MAT2 *", "{MAT2}") {
     REQUIRE(f.e_11 == Approx(9.0f));
 }
 
-int main(int argc, char *argv[])
+TEST_CASE("MAT2 det", "{MAT2}") {
+    Mat2 a = { 3.0f, 7.0f, 1.0f, 4.0f };
+    REQUIRE(a.det() == Approx(5.0f));
+
+    Mat2 b;
+    REQUIRE(b.det() == Approx(1.0f));
+}
+
+TEST_CASE("MAT2 * VEC2", "{MAT2}") {
+    Mat2 a = { 3.0f, 7.0f, 1.0f, 4.0f };
+    Vec2 b = { 2.0f, 5.0f };
+    Vec2 c = a * b;
+    REQUIRE(c.x == Approx(41.0f));
+    REQUIRE(c.y == Approx(22.0f));
+
+    Mat2 e{};
+    Vec2 f{};
+    Vec2 g = e * f;
+    REQUIRE(g.x == Approx(0.0f));
+    REQUIRE(g.y == Approx(0.0f));
+
+    Mat2 h = { 3.0f, 7.0f, 1.0f, 4.0f };
+    Vec2 i = { 2.0f, 5.0f };
+    Vec2 j = i * h;
+    REQUIRE(j.x == Approx(41.0f));
+    REQUIRE(j.y == Approx(22.0f));
+
+    Mat2 k{};
+    Vec2 l{};
+    Vec2 m = l * k;
+    REQUIRE(m.x == Approx(0.0f));
+    REQUIRE(m.y == Approx(0.0f));
+}
+
+TEST_CASE("MAT2 inverse", "{MAT2}") {
+    Mat2 a = { 3.0f, 5.0f, 4.0f, 2.0f };
+    Mat2 a_inverse = inverse(a);
+    REQUIRE(a_inverse.e_00 == Approx(-0.14285f));
+    REQUIRE(a_inverse.e_10 == Approx(0.35714f));
+    REQUIRE(a_inverse.e_01 == Approx(0.28571f));
+    REQUIRE(a_inverse.e_11 == Approx(-0.21428f));
+
+    Mat2 b{};
+    Mat2 b_inverse = inverse(b);
+    REQUIRE(b_inverse.e_00 == Approx(1.0f));
+    REQUIRE(b_inverse.e_10 == Approx(0.0f));
+    REQUIRE(b_inverse.e_01 == Approx(0.0f));
+    REQUIRE(b_inverse.e_11 == Approx(1.0f));
+}
+
+TEST_CASE("MAT2 transpose", "{MAT2}") {
+    Mat2 a = { 3.0f, 5.0f, 4.0f, 2.0f };
+    Mat2 a_trans = transpose(a);
+    REQUIRE(a_trans.e_00 == Approx(3.0f));
+    REQUIRE(a_trans.e_10 == Approx(4.0f));
+    REQUIRE(a_trans.e_01 == Approx(5.0f));
+    REQUIRE(a_trans.e_11 == Approx(2.0f));
+
+    Mat2 b{};
+    Mat2 b_trans = transpose(b);
+    REQUIRE(b_trans.e_00 == Approx(1.0f));
+    REQUIRE(b_trans.e_10 == Approx(0.0f));
+    REQUIRE(b_trans.e_01 == Approx(0.0f));
+    REQUIRE(b_trans.e_11 == Approx(1.0f));
+}
+
+int main(int argc, char* argv[])
 {
-  return Catch::Session().run(argc, argv);
+    return Catch::Session().run(argc, argv);
 }
