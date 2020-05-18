@@ -22,6 +22,39 @@ Vec2& Vec2::operator/=(float s)
 		std::cout << "Eine Division durch 0 ist nicht erlaubt" << std::endl;
 		return Vec2{};
 	}
-	std::cout << "If wurde nicht ausgeführt" << std::endl;
 	return Vec2{ x /= s, y /= s };
+}
+
+Vec2 operator+(Vec2 const& u, Vec2 const& v)
+{
+	Vec2 a = u;
+	a += v;
+	return a;
+}
+
+Vec2 operator-(Vec2 const& u, Vec2 const& v)
+{
+	Vec2 a = u;
+	a -= v;
+	return a;
+}
+
+Vec2 operator*(Vec2 const& v, float s)
+{
+	Vec2 a = v;
+	a *= s;
+	return a;
+}
+
+Vec2 operator/(Vec2 const& v, float s)
+{
+	Vec2 a = v;
+	a /= s;
+	return a;
+}
+
+Vec2 operator*(float s, Vec2 const& v)
+{
+	Vec2 a = v * s;
+	return a;
 }
