@@ -4,6 +4,8 @@
 #include "vec2.hpp"
 #include "mat2.hpp"
 #include "color.hpp"
+#include "circle.hpp"
+#include "rectangle.hpp"
 
 TEST_CASE("Vec2", "{Vec2}") {
     Vec2 a;
@@ -275,6 +277,26 @@ TEST_CASE("Color", "{Color}") {
     REQUIRE(color.r == Approx(0.5f));
     REQUIRE(color.g == Approx(0.5f));
     REQUIRE(color.b == Approx(0.5f));
+}
+
+TEST_CASE("Circle cirmcumference", "{Circle}") {
+    Circle c1{ {1.0f, 1.0f}, 2.0f, {0.5f, 0.5f, 0.5f} };
+    float c1_circum = c1.circumference();
+    REQUIRE(c1_circum == Approx(12.56637f));
+
+    Circle c2;
+    float c2_circum = c2.circumference();
+    REQUIRE(c2_circum == Approx(6.28319f));
+}
+
+TEST_CASE("Rectangle circumferene", "{Rectangle}") {
+    aufgabe2::Rectangle rect1{ {2.0f, 2.0f}, {16.0f, 5.0f}, {1.0f, 1.0f, 0.6f} };
+    float rect1_circum = rect1.circumference();
+    REQUIRE(rect1_circum == Approx(34.0f));
+
+    aufgabe2::Rectangle rect2{};
+    float rect2_circum = rect2.circumference();
+    REQUIRE(rect2_circum == Approx(4.0f));
 }
 
 int main(int argc, char* argv[])
