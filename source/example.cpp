@@ -2,6 +2,8 @@
 #include <GLFW/glfw3.h>
 #include <utility>
 #include <cmath>
+#include "rectangle.hpp"
+#include "circle.hpp"
 
 
 int main(int argc, char* argv[])
@@ -51,6 +53,13 @@ int main(int argc, char* argv[])
     unsigned int font_size = 35;
     
     win.draw_text(text_offset_x, text_offset_y, font_size, display_text);
+
+    // own Code
+    aufgabe2::Rectangle rect{ { 200.0f, 200.0f }, { 400.0f, 400.0f }, { 0.0f, 0.0f, 1.0f } };
+    rect.draw(win);
+
+    Circle circle{ {400.0f, 400.0f}, 50.0f, {1.0f, 0.0f, 0.0f} };
+    circle.draw(win);
 
     win.update();
   }
