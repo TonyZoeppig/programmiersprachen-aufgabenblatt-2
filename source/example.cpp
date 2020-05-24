@@ -55,11 +55,33 @@ int main(int argc, char* argv[])
     win.draw_text(text_offset_x, text_offset_y, font_size, display_text);
 
     // own Code
-    aufgabe2::Rectangle rect{ { 200.0f, 200.0f }, { 400.0f, 400.0f }, { 0.0f, 0.0f, 1.0f } };
-    rect.draw(win);
+    Vec2 mouse_pos = { win.mouse_position().first, win.mouse_position().second };
 
-    Circle circle{ {400.0f, 400.0f}, 50.0f, {1.0f, 0.0f, 0.0f} };
-    circle.draw(win);
+    aufgabe2::Rectangle rect1{ { 200.0f, 200.0f }, { 400.0f, 400.0f }, { 0.0f, 0.0f, 1.0f } };
+    aufgabe2::Rectangle rect2{ { 100.0f, 100.0f }, { 200.0f, 200.0f }, { 0.0f, 0.0f, 1.0f } };
+    std::array<aufgabe2::Rectangle, 2> rectangles{ rect1, rect2 };
+
+    Circle circle1{ {400.0f, 400.0f}, 50.0f, {1.0f, 0.0f, 0.0f} };
+    Circle circle2{ {50.0f, 50.0f}, 20.0f, {1.0f, 1.0f, 0.0f} };
+    std::array<Circle, 2> circles{ circle1, circle2 };
+
+    for (int i = 0; i < rectangles.size(); ++i) {
+        if (rectangles[i].is_inside(mouse_pos) == true) {
+            rectangles[i].draw(win, 2.0f);
+        }
+        else {
+            rectangles[i].draw(win, 1.0f);
+        }
+    }
+
+    for (int i = 0; i < circles.size(); ++i) {
+        if (circles[i].is_inside(mouse_pos) == true) {
+            circles[i].draw(win, 2.0f);
+        }
+        else {
+            circles[i].draw(win, 1.0f);
+        }
+    }
 
     win.update();
   }

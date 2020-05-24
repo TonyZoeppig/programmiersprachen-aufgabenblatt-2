@@ -289,6 +289,14 @@ TEST_CASE("Circle cirmcumference", "{Circle}") {
     REQUIRE(c2_circum == Approx(6.28319f));
 }
 
+TEST_CASE("Circle is_inside", "Circle") {
+    Circle circle{ {0.0f, 0.0f}, 10.0f, {} };
+    REQUIRE(circle.is_inside({ 1.0f, 3.0f }) == true);
+    REQUIRE(circle.is_inside({ 10.0f, 0.0f }) == true);
+    REQUIRE(circle.is_inside({ 10.1f, 0.0f }) == false);
+    REQUIRE(circle.is_inside({ 120.0f, 35.0f }) == false);
+}
+
 TEST_CASE("Rectangle circumferene", "{Rectangle}") {
     aufgabe2::Rectangle rect1{ {2.0f, 2.0f}, {16.0f, 5.0f}, {1.0f, 1.0f, 0.6f} };
     float rect1_circum = rect1.circumference();
@@ -297,6 +305,14 @@ TEST_CASE("Rectangle circumferene", "{Rectangle}") {
     aufgabe2::Rectangle rect2{};
     float rect2_circum = rect2.circumference();
     REQUIRE(rect2_circum == Approx(4.0f));
+}
+
+TEST_CASE("Rectangle is_inside", "Rectangle") {
+    aufgabe2::Rectangle rect{ {-4.0f, -4.0f}, {4.0f, 4.0f}, {} };
+    REQUIRE(rect.is_inside({ 0.0f, 0.0f }) == true);
+    REQUIRE(rect.is_inside({ 4.0f, -4.0f }) == true);
+    REQUIRE(rect.is_inside({ -4.1f, 0.0f }) == false);
+    REQUIRE(rect.is_inside({ -14.0f, 20.0f }) == false);
 }
 
 int main(int argc, char* argv[])
