@@ -9,12 +9,17 @@ Circle::Circle(Vec2 const& cntr, float r, Color const& clr) :
 	radius_{r},
 	color_{clr} {}
 
+Vec2 Circle::center() const
+{
+	return center_;
+}
+
 float Circle::circumference() const
 {
 	return 2 * M_PI * radius_;
 }
 
-void Circle::draw(Window const& window)
+void Circle::draw(Window const& window) const
 {
 	Vec2 start_point{ center_.x, center_.y + radius_ };
 	Vec2 end_point = start_point;
@@ -23,7 +28,6 @@ void Circle::draw(Window const& window)
 	for (int i = 1; i <= 3600; ++i) {
 
 		Vec2 next_point = center_ + (rotation_matrix * (end_point - center_));
-		// end_point = rotation_matrix * start_point;
 
 		window.draw_line(end_point.x, end_point.y, next_point.x, next_point.y, color_.r, color_.g, color_.b, 1.0f);
 
@@ -31,7 +35,7 @@ void Circle::draw(Window const& window)
 	}
 }
 
-void Circle::draw(Window const& window, float thickness)
+void Circle::draw(Window const& window, float thickness) const
 {
 	Vec2 start_point{ center_.x, center_.y + radius_ };
 	Vec2 end_point = start_point;

@@ -9,9 +9,10 @@ class Circle {
 	public:
 		Circle() = default;
 		Circle(Vec2 const& cntr, float r, Color const& clr);
+		Vec2 center() const;
 		float circumference() const;
-		void draw(Window const& window);
-		void draw(Window const& window, float thickness);
+		void draw(Window const& window) const;
+		void draw(Window const& window, float thickness) const;
 		bool is_inside(Vec2 const& point);
 	private:
 		Vec2 center_ = { 0.0f, 0.0f };
