@@ -40,8 +40,9 @@ namespace aufgabe2 {
 		// draw right vertical line
 		window.draw_line(max_.x, min_.y, max_.x, max_.y, color_.r, color_.g, color_.b, thickness);
 	}
-	bool Rectangle::is_inside(Vec2 const& point)
+	bool Rectangle::is_inside(Vec2 const& point) const
 	{
+		// check if mouse position is inside the rectangle borders
 		if (point.x <= max_.x && point.x >= min_.x && point.y <= max_.y && point.y >= min_.y) {
 			return true;
 		}

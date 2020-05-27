@@ -1,4 +1,3 @@
-
 #include "mat2.hpp"
 
 Mat2& Mat2::operator*=(Mat2 const& m) {

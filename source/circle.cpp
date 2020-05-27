@@ -21,8 +21,7 @@ float Circle::circumference() const
 
 void Circle::draw(Window const& window) const
 {
-	Vec2 start_point{ center_.x, center_.y + radius_ };
-	Vec2 end_point = start_point;
+	Vec2 end_point{ center_.x, center_.y + radius_ };
 	Mat2 rotation_matrix = make_rotation_mat2((0.1 * M_PI) / 180);
 
 	for (int i = 1; i <= 3600; ++i) {
@@ -52,10 +51,12 @@ void Circle::draw(Window const& window, float thickness) const
 	}
 }
 
-bool Circle::is_inside(Vec2 const& point)
+bool Circle::is_inside(Vec2 const& point) const
 {
+	// compute distance from center to mousposition
 	float distance = sqrt(pow(point.x - center_.x, 2) + pow(point.y - center_.y, 2));
 
+	// if distance is smaller or equals the radius, the mouse is within the circle
 	if (distance <= radius_) {
 		return true;
 	}

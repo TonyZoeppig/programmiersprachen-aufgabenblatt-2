@@ -13,11 +13,11 @@ namespace aufgabe2 {
 			float circumference() const;
 			void draw(Window const& window) const;
 			void draw(Window const& window, float thickness) const;
-			bool is_inside(Vec2 const& point);
+			bool is_inside(Vec2 const& point) const;
 		private:
 			Vec2 min_{ 0.0f, 0.0f };
 			Vec2 max_{ 1.0f, 1.0f };
-			Color color_{ 0.0f, 0.0f, 0.0f };
+			Color color_;
 	};
 }
 
